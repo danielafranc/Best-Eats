@@ -1,12 +1,25 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux'
 import { AiOutlineMenu, AiOutlineSearch, AiOutlineClose, AiFillTag } from 'react-icons/ai';
 import { BsFillCartFill, BsFillSaveFill } from 'react-icons/bs';
 import {TbTruckDelivery} from 'react-icons/tb'
 import {FaUserFriends, FaWallet} from 'react-icons/fa'
 import {MdFavorite, MdHelp} from 'react-icons/md'
+import { QuioscoContext } from '../context/QuioscoContext';
+import useQuiosco from '../hooks/UseRestaurant';
+import data from '../data/data.js';
+
 
 const Navbar = () => {
 const [nav, setNav] = useState(false);
+
+const {handleClickCategoria, categoriaActual, logo} = useContext(QuioscoContext);
+console.log(logo)
+
+
+
+const {counter} = useSelector(state => state.counter);
+const dispatch = useDispatch(); 
 
   return (
     <div className='max-w-[1640px] mx-auto flex justify-between items-center p-4'>
@@ -55,7 +68,9 @@ const [nav, setNav] = useState(false);
         </h2>
         <nav>
             <ul className='flex flex-col p-4 text-gray-800'>
-                <li className='text-xl py-4 flex'><TbTruckDelivery size={25} className='mr-4' /> Orders</li>
+                <li className='text-xl py-4 flex'><TbTruckDelivery size={25} className='mr-4'/> 
+                <button onClick={() => handleClickCategoria(id)}> click </button>
+                </li>
                 <li className='text-xl py-4 flex'><MdFavorite size={25} className='mr-4' /> Favorites</li>
                 <li className='text-xl py-4 flex'><FaWallet size={25} className='mr-4' /> Wallet</li>
                 <li className='text-xl py-4 flex'><MdHelp size={25} className='mr-4' /> Help</li>
