@@ -1,12 +1,12 @@
 import React from 'react';
 
-const MainApp = () => {
+const ResumePage = () => {
     return (
         <div>
-           <h1>MainApp</h1>  
+           <h1>ResumePage</h1>  
            <hr />
         </div>
     );
 };
 
-export default MainApp;
+export default ResumePage;

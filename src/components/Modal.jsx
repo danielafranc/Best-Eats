@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import useQuiosco from '../hooks/UseRestaurant';
-
+import data from '../data/data';
 
 const style = {
   position: 'absolute',
@@ -22,8 +22,21 @@ export  function ModalJSX(props) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [counter, setCounter] = useState(1);
-  const {handleAgregarPedido} = useQuiosco();
+  const {handleAgregarPedido, pedido} = useQuiosco();
+  const producto = props.item;
+
+  const [cantidad, setCantidad] = useState(1);
+  const [edicion, setEdicion] = useState(false);
+
+  useEffect(() => {
+    //Comprobar si el Modal Actual esta en el pedido
+    if(pedido.some((pedidoState) => pedidoState.id === producto.id)){
+    const productoEdicion =  pedido.find((pedidoState) => pedidoState.id === producto.id);
+    setEdicion(true);
+    setCantidad(productoEdicion.cantidad);
+  }
+    
+  }, [producto, pedido]);
 
   return (
     <div>
@@ -47,21 +60,21 @@ export  function ModalJSX(props) {
             
           <div className='flex gap-4 mt-5 items-center justify-center'>
 
-          <Button onClick={() => {
-            if(counter <= 1) return;
-            setCounter(counter - 1)}}>
+          <Button 
+          onClick={() => {if(cantidad <= 1) return;
+            setCantidad(cantidad - 1)}}>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-7 h-7">
           <path strokeLinecap="round" strokeLinejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
           </Button> 
           
           <Typography>
-            {counter}
+            {cantidad}
           </Typography>
 
           <Button onClick={() => {
-            if(counter >= 5) return;
-            setCounter(counter + 1)}}>
+            if(cantidad >= 5) return;
+            setCantidad(cantidad + 1)}}>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-7 h-7">
           <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
@@ -69,9 +82,14 @@ export  function ModalJSX(props) {
           </div>
          
          <button
-         onClick={() => handleAgregarPedido()}
+         onClick={() => {
+          handleAgregarPedido({...pedido, cantidad, ...producto})
+          if(!edicion){
+            handleClose(true)
+          }
+        }}
          className='bg-indigo-600 px-5 py-2 mt-5 text-white font-bold uppercase rounded border-none flex justify-center m-auto hover:bg-indigo-700'>
-          Añadir al pedido
+          {edicion ? 'Guardar Cambios' : 'Agregar Pedido'}
          </button>
          
         </Box>

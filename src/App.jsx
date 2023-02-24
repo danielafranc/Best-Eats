@@ -8,15 +8,12 @@ import Category from './components/Category'
 import { QuioscoProvider } from './context/QuioscoProvider'
 import { Route, Routes, Navigate } from 'react-router-dom'
 import HomePage from './pages/HomePage'
-import AboutPage from './pages/AboutPage'
-import MainApp from './pages/MainApp'
 import Modal from 'react-modal';
 import useQuiosco from './hooks/UseRestaurant'
-import { ModalProvider } from './context/ModalContext'
-
-
-
-
+import { ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import TotalPage from './pages/TotalPage'
+import ResumePage from './pages/ResumenPage'
 function App() {
   
 
@@ -27,11 +24,12 @@ function App() {
       <HeadlineCards/>
       <Food/>
       <Category/>
+      <ToastContainer/>
           
       <Routes>
         <Route path="/" element={<HomePage/>}/>
-        <Route path="main" element={<MainApp/>}/>
-        <Route path="about" element={<AboutPage/>}/>
+        <Route path="resume" element={<ResumePage/>}/>
+        <Route path="totalpage" element={<TotalPage/>}/>
 
         <Route path='/*' element={<Navigate to="/about" />} />
       </Routes>

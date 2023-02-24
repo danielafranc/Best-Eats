@@ -116,7 +116,7 @@ const Food = () => {
                                 <span className='bg-orange-500 text-white rounded-full p-1'>{item.price}</span>
                             </p>
                             {/* Import button from ModalJSX */}
-                           <ModalJSX name={item.name}  desc={item.desc} price={item.price} />
+                           <ModalJSX name={item.name}  desc={item.desc} price={item.price} item={item} />
                         </div>
                     </div>
                 ))}

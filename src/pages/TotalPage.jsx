@@ -1,12 +1,12 @@
 import React from 'react';
 
-const AboutPage = () => {
+const TotalPage = () => {
     return (
         <div>
-           <h1>AboutPage</h1>  
+           <h1>TotalPage</h1>  
            <hr />
         </div>
     );
 };
 
-export default AboutPage;
+export default TotalPage;

@@ -1,8 +1,10 @@
-import { useState, useEffect, useCallback} from "react";
+import { useState, useEffect} from "react";
 import axios from 'axios'; 
 import { categories, data } from "../data/data";
 import { QuioscoContext } from "./QuioscoContext";
 import Modal from 'react-modal';
+import { toast } from 'react-toastify';
+
 
 
 const datax =  data;
@@ -13,7 +15,11 @@ const QuioscoProvider = ({children}) => {
 
     const [categorias, setCategorias] = useState([]);
     const [categoriaActual, setCategoriaActual] = useState({});
+    const [producto, setProducto ] = useState({});
     const [pedido, setPedido] = useState([]);
+    const [modal, setModal] = useState(true);
+
+
 
     const obtenerCategorias = async () => { 
         setCategorias(data)
@@ -32,9 +38,28 @@ const QuioscoProvider = ({children}) => {
         setCategoriaActial(categoria[0])
     }
 
-    const handleAgregarPedido = () => {
-        console.log('agrengando...')
+    const handleSetProducto = producto => {
+        setProducto(producto)
     }
+
+    const handleChangeModal = () => {
+        setModal(!modal)
+    }
+
+    const handleAgregarPedido = ({categoriaId, ...producto}) => {
+        if(pedido.some(productoState => productoState.id === producto.id)) {
+           // Actualizar la cantidad
+           const pedidoActualizado = pedido.map(productoState => productoState.id === producto.id ? producto : productoState)
+           setPedido(pedidoActualizado)
+           toast.success('Agregamos tu pedido exitosamente')
+        } else {
+            setPedido([...pedido, producto])
+            toast.success('Guardamos tu pedido')
+        }
+        return pedido;
+    }
+
+    
     
 
     
@@ -45,10 +70,12 @@ const QuioscoProvider = ({children}) => {
             categorias,
             categoriaActual,
             handleClickCategoria,
-            handleAgregarPedido
+            handleAgregarPedido, 
+            pedido,
+            producto,
+            handleSetProducto,
         }}>
         {children}
-
         </QuioscoContext.Provider>
     )
 }
