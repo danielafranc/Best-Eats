@@ -2,10 +2,10 @@ import React from 'react';
 
 const TotalPage = () => {
     return (
-        <div>
-           <h1>TotalPage</h1>  
-           <hr />
-        </div>
+        <>
+           <h1 className='text-4xl font-black'>Total</h1>  
+           <p className='text-2xl my-10'>Confirma tu pedido a continuación</p> 
+        </>
     );
 };
 

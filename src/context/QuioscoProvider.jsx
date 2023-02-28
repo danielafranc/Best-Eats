@@ -18,6 +18,8 @@ const QuioscoProvider = ({children}) => {
     const [producto, setProducto ] = useState({});
     const [pedido, setPedido] = useState([]);
     const [modal, setModal] = useState(true);
+    const [paso, setPaso] = useState(1);
+
 
 
 
@@ -42,8 +44,8 @@ const QuioscoProvider = ({children}) => {
         setProducto(producto)
     }
 
-    const handleChangeModal = () => {
-        setModal(!modal)
+    const handleChangePaso = paso => {
+        setPaso(paso)
     }
 
     const handleAgregarPedido = ({categoriaId, ...producto}) => {
@@ -74,6 +76,8 @@ const QuioscoProvider = ({children}) => {
             pedido,
             producto,
             handleSetProducto,
+            paso,
+            handleChangePaso
         }}>
         {children}
         </QuioscoContext.Provider>

@@ -1,13 +1,12 @@
 import React, {useContext, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux'
+import { QuioscoContext } from '../context/QuioscoContext';
+import Pasos from './Pasos';
 import { AiOutlineMenu, AiOutlineSearch, AiOutlineClose, AiFillTag } from 'react-icons/ai';
 import { BsFillCartFill, BsFillSaveFill } from 'react-icons/bs';
 import {TbTruckDelivery} from 'react-icons/tb'
 import {FaUserFriends, FaWallet} from 'react-icons/fa'
 import {MdFavorite, MdHelp} from 'react-icons/md'
-import { QuioscoContext } from '../context/QuioscoContext';
-import useQuiosco from '../hooks/UseRestaurant';
-import data from '../data/data.js';
 
 
 const Navbar = () => {
@@ -36,7 +35,6 @@ const dispatch = useDispatch();
           <p className='p-2'>Pickup</p>
         </div>
       </div>
-
       {/* Search Input */}
       <div className='bg-gray-200 rounded-full flex items-center px-2 w-[200px] sm:w-[400px] lg:w-[500px]'>
         <AiOutlineSearch size={25} />
