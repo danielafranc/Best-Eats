@@ -13,9 +13,11 @@ const style = {
   transform: 'translate(-50%, -50%)',
   width: 400,
   bgcolor: 'background.paper',
-  border: '2px solid #000',
+  borderRadius: '20px',
   boxShadow: 24,
   p: 4,
+
+
 };
 
 export  function ModalJSX(props) {
@@ -48,15 +50,15 @@ export  function ModalJSX(props) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
+          <p className="font-bold text-2xl mt-2 ">
             {props.name}
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-           {props.price}
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+          </p>
+          <p className='font-semibold text-xl mt-2'>
+           ${props.price}
+          </p>
+          <p className='text-[18px] mt-2'>
            {props.desc}
-          </Typography>
+          </p>
             
           <div className='flex gap-4 mt-5 items-center justify-center'>
 
@@ -89,7 +91,7 @@ export  function ModalJSX(props) {
           }
         }}
          className='bg-indigo-600 px-5 py-2 mt-5 text-white font-bold uppercase rounded border-none flex justify-center m-auto hover:bg-indigo-700'>
-          {edicion ? 'Guardar Cambios' : 'Agregar Pedido'}
+          Add to my order
          </button>
          
         </Box>

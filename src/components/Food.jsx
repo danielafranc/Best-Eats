@@ -22,10 +22,10 @@ const Food = () => {
     const filterPrice = (price) => {
         setFoods(
             data.filter((item) => {
-                return item.price === price;
-            })
-        )
-    }
+               return item.price < price;
+            }
+        ))}
+    
  
     // Function to show Toast
 
@@ -82,23 +82,13 @@ const Food = () => {
                     <div className="flex justify-between max-w-[390px] w-full">
                     <button 
                     className='m-1 border-orange-600 text-orang hover:bg-orange-600 hover:text-white'
-                    onClick={() => filterPrice('$')}
-                    >$</button>
+                    onClick={() => filterPrice('15')}
+                    >Lowest</button>
 
                     <button 
                     className='m-1 border-orange-600 text-orang hover:bg-orange-600 hover:text-white'
-                    onClick={() => filterPrice('$$')}
-                    >$$</button>
-
-                    <button 
-                    className='m-1 border-orange-600 text-orang hover:bg-orange-600 hover:text-white'
-                    onClick={() => filterPrice('$$$')}
-                    >$$$</button>
-
-                    <button 
-                    className='m-1 border-orange-600 text-orang hover:bg-orange-600 hover:text-white'
-                    onClick={() => filterPrice('$$$$')}
-                    >$$$$</button>
+                    onClick={() => filterPrice(' 20')}
+                    >Highest</button>
                     </div>
                 </div>
             </div>
@@ -111,10 +101,13 @@ const Food = () => {
                         className="w-full h-[200px] object-cover rounded-t-lg"
                         />
                         <div className='flex justify-between items-center px-2 py-4 '>
+                           <div className='inline-flex'> 
                             <p className='font-bold'>{item.name}</p>
                             <p>
-                                <span className='bg-orange-500 text-white rounded-full p-1'>{item.price}</span>
+                                <span className='bg-orange-500 text-white rounded-full p-1 px-3 m-2'>${item.price}</span>
                             </p>
+                            </div>
+                           
                             {/* Import button from ModalJSX */}
                            <ModalJSX name={item.name}  desc={item.desc} price={item.price} item={item} />
                         </div>
