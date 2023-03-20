@@ -4,6 +4,7 @@ import { categories, data } from "../data/data";
 import { QuioscoContext } from "./QuioscoContext";
 import Modal from 'react-modal';
 import { toast } from 'react-toastify';
+import ModalJSX from "../components/Modal";
 
 
 
@@ -13,33 +14,15 @@ const datax =  data;
 const QuioscoProvider = ({children}) => {
     // Lógica 
 
-    const [categorias, setCategorias] = useState([]);
+    const [selectedProduct, setSelectedProduct] = useState(null);
     const [categoriaActual, setCategoriaActual] = useState({});
     const [producto, setProducto ] = useState({});
     const [pedido, setPedido] = useState([]);
-    const [modal, setModal] = useState(true);
+    const [modal, setModal] = useState(false);
 
-    const obtenerCategorias = async () => { 
-        setCategorias(data)
+    const handleSetProduct = (producto) => {
+        setSelectedProduct(producto);
     }
-
-    useEffect(() => {
-        obtenerCategorias()
-    }, [])
-
-    useEffect(() => {
-        setCategoriaActual(categorias[0])
-    }, [categorias])
-
-    const handleClickCategoria = (id) => {
-        const categorias = categorias.filter( cat => cat.id === id)
-        setCategoriaActial(categoria[0])
-    }
-
-    const handleSetProducto = producto => {
-        setProducto(producto)
-    }
-
 
     const handleAgregarPedido = ({categoriaId, ...producto}) => {
         if(pedido.some(productoState => productoState.id === producto.id)) {
@@ -54,23 +37,36 @@ const QuioscoProvider = ({children}) => {
         return pedido;
     }
 
+    const handleModal = () => {
+        setModal(!modal);
+    }
+
+    const handleEditarCantidades = id => {
+        const productoActualizar = pedido.filter( producto => producto.id === id)
+        setSelectedProduct(productoActualizar[0])
+        setModal(!modal)
+    }
+
+
+   
+
+
     
+    const contextValue = {
+        handleAgregarPedido, 
+        pedido,
+        producto,
+        handleEditarCantidades,
+        handleModal,
+        modal, 
+        handleSetProduct, 
+        selectedProduct
+    };
     
 
     
     return(
-        <QuioscoContext.Provider
-        value={{
-            data,
-            categorias,
-            categoriaActual,
-            handleClickCategoria,
-            handleAgregarPedido, 
-            pedido,
-            producto,
-            handleSetProducto,
-            
-        }}>
+        <QuioscoContext.Provider value={contextValue}>
         {children}
         </QuioscoContext.Provider>
     )

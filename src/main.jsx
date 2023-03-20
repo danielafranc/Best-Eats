@@ -7,6 +7,7 @@ import './index.css'
 import { store } from './store/store'
 import HomePage from './pages/HomePage';
 import ResumePage from './pages/ResumenPage';
+import Pruebas from './components/Pruebas'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(

@@ -1,13 +1,15 @@
 import React, {useState} from 'react';
-import { data } from "../data/data";
+import  data  from "../data/data";
+import useQuiosco from '../hooks/UseRestaurant';
 import ModalJSX from './Modal';
 
 const Food = () => {
     // console.log(data);
 
     const [foods, setFoods] = useState(data);
-    const [showComp, setShowComp] = useState(false);
- 
+    const [open, setOpen] = useState(false);
+    // const [selectedProduct, setSelectedProduct] = useState(null);
+    const {handleModal, modal, handleSetProduct, selectedProduct} = useQuiosco();
 
     //Filter Type burgers/pizza/etc
     const filterType = (category) => {
@@ -25,19 +27,13 @@ const Food = () => {
                return item.price < price;
             }
         ))}
-    
- 
-    // Function to show Toast
 
-    const handleToast = () => {
-        setShowComp(true);
-    }
-
-    const {handleOpen} = ModalJSX;
-
+   
 
     return (
         <div className='max-w-[1640] mx-auto px-4 py-12'>
+
+            {/* <Food food={data}/> */}
            <h1 className='text-orange-600 font-bold text-4xl text-center'>Top Rated Menu Items</h1> 
             
             {/* Filter Row */}
@@ -107,12 +103,13 @@ const Food = () => {
                                 <span className='bg-orange-500 text-white rounded-full p-1 px-3 m-2'>${item.price}</span>
                             </p>
                             </div>
-                           
-                            {/* Import button from ModalJSX */}
-                           <ModalJSX name={item.name}  desc={item.desc} price={item.price} item={item} />
+                            <button onClick={() => {handleSetProduct(item); handleModal();}}>Add</button>
                         </div>
                     </div>
                 ))}
+                {selectedProduct && (
+                 <ModalJSX  item={selectedProduct} open={modal} handleClose={handleModal}/>
+                )}
             </div>
 
         </div>
@@ -120,3 +117,4 @@ const Food = () => {
 };
 
 export default Food;
+

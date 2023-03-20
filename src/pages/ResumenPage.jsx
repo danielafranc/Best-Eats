@@ -12,13 +12,12 @@ const ResumePage = () => {
             <h1 className='text-4xl font-black'>Resume</h1>  
            <p className='text-2xl my-10'>This is your order!</p> 
             {
-                pedido.length === 0 ? (
-                    <p className='text-center text-2xl'>There are no items in your order</p>
-                 ) : (
-                    pedido.map(product => (
-                        <ResumenProducto 
+            pedido.length === 0 ? (
+            <p className='text-center text-2xl'>There are no items in your order</p> ) : 
+            (pedido.map(product => (
+                 <ResumenProducto 
                         key={product.id}
-                        product={product}
+                       product={product}
                         />
                     ))
                  )
