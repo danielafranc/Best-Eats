@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, forwardRef} from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import useQuiosco from '../hooks/UseRestaurant';
@@ -38,7 +38,7 @@ const ModalItem = ({name, desc, price, item}) => {
 
 
     return (
-        <div>
+        <>
             <Box sx={style}>
             <p className="font-bold text-2xl mt-2 ">
             {name}
@@ -82,7 +82,7 @@ const ModalItem = ({name, desc, price, item}) => {
        
 
                  
-          </div>
+          </>
     );
 };
 

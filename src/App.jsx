@@ -1,9 +1,8 @@
-import React, {useState} from 'react'
-import { Link, Navigate, Route, Routes, Router } from "react-router-dom";
-import './App.css'
-import HeadlineCards from './components/HeadlineCards'
-import Pasos from './components/Pasos';
+
+import {Route, Routes} from "react-router-dom";
 import { QuioscoProvider } from './context/QuioscoProvider'
+import './App.css'
+import Pasos from './components/Pasos';
 import HomePage from './pages/HomePage'
 import TotalPage from './pages/TotalPage'
 import ResumePage from './pages/ResumenPage'
@@ -19,9 +18,6 @@ function App() {
                 <Route path="resume" element={<ResumePage/>}/>
                 <Route path="totalpage" element={<TotalPage/>}/>
                 </Routes>
-          
-      
-
     </QuioscoProvider>
   )
 }
