@@ -15,7 +15,7 @@ const ResumenProducto = ({product}) => {
 
     return(
         <Fragment>
-        <div className='shadow p-5 mb-3 flex gap-10 items-center'>
+        <div className='rounded-lg shadow-lg p-5 mb-3 flex gap-10 items-center'>
             <div className='flex'>
                 <img src={product.image} alt={product.name} className=" flex w-[300px] h-[300px] object-cover" />
             </div>

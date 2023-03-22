@@ -1,10 +1,7 @@
 import { useState, useEffect} from "react";
-import axios from 'axios'; 
-import { categories, data } from "../data/data";
+import { data } from "../data/data";
 import { QuioscoContext } from "./QuioscoContext";
-import Modal from 'react-modal';
 import { toast } from 'react-toastify';
-import ModalJSX from "../components/Modal";
 
 
 
@@ -65,7 +62,8 @@ const QuioscoProvider = ({children}) => {
     // This function sends the order 
     const colocarOrden = async e => {
         e.preventDefault();
-        toast('Your order is going to be prepared!')
+        toast.success('Your order has been sent to be prepared!')
+
         console.log("Enviando orden...")
     };
     

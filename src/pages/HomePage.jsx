@@ -4,6 +4,7 @@ import Food from '../components/Food';
 import HeadlineCards from '../components/HeadlineCards';
 import Hero from '../components/Hero';
 import Navbar from '../components/Navbar';
+import Footer from '../components/Footer'
 import { ToastContainer} from 'react-toastify';
 
 
@@ -15,8 +16,7 @@ const HomePage = () => {
         <HeadlineCards/>
         <Food/>
         <Category/>
-        <ToastContainer/> 
-        
+        <ToastContainer/>         
         </>
     );
 };
