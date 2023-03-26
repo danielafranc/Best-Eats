@@ -8,7 +8,7 @@ import Footer from '../components/Footer'
 import { ToastContainer} from 'react-toastify';
 
 
-const HomePage = () => {
+function HomePage(){
     return (
         <>
         <Navbar/>

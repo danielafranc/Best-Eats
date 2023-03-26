@@ -30,7 +30,7 @@ const ResumenProducto = ({product}) => {
             <button 
           className="bg-sky-700 flex gap-2  py-2 text-white rounded-md font-bold uppercase shadow-md w-full text-center"
           onClick={() => { handleEditarCantidades(product.id)}}
-            >Editar</button>
+            >Edit</button>
             {
                 selectedProduct && (
                     <ModalJSX  item={selectedProduct} open={modal} handleClose={handleModal}/>
@@ -38,7 +38,7 @@ const ResumenProducto = ({product}) => {
             }
             <button
             onClick={() => handleEliminarProducto(product.id)}
-            className="bg-red-700 flex gap-2  px-5 py-2 text-white rounded-md font-bold uppercase shadow-md w-full text-center mt-3"            >Eliminar</button>
+            className="bg-red-700 flex gap-2  px-5 py-2 text-white rounded-md font-bold uppercase shadow-md w-full text-center mt-3">Remove</button>
         </div>
         </div>
         </Fragment>

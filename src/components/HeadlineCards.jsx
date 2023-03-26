@@ -1,6 +1,6 @@
 import salad2 from  "./images/salad2.jpeg"
 import salad from  "./images/salad.webp"
-import dessert from  "./images/dessert.jpeg"
+import dessert from  "./images/dessert.jpg"
 
 
 
